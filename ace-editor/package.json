@@ -1,0 +1,21 @@
+{
+  "name": "jenkins-ace-editor",
+  "version": "1.0.0",
+  "description": "Jenkins CI ACE Editor JavaScript module",
+  "author": "Tom Fennelly <tom.fennelly@gmail.com> (https://github.com/tfennelly)",
+  "license": "MIT",
+  "scripts": {
+    "mvnbuild": "gulp bundle",
+    "mvntest": "gulp test"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "jenkins-js-builder": "0.0.51",
+    "jenkins-js-test": "1.0.1",
+    "zombie": "^4.2.1"
+  },
+  "dependencies": {
+    "jenkins-js-modules": "1.5.4",
+    "window-handle": "1.0.1"
+  }
+}

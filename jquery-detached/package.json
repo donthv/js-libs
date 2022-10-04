@@ -1,0 +1,22 @@
+{
+  "name": "jenkins-jquery",
+  "version": "1.0.0",
+  "description": "Jenkins CI JQuery JavaScript module",
+  "author": "Tom Fennelly <tom.fennelly@gmail.com> (https://github.com/tfennelly)",
+  "license": "MIT",
+  "scripts": {
+    "mvnbuild": "gulp bundle",
+    "mvntest": "gulp test"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "jsdom": "7.0.2",
+    "jenkins-js-builder": "0.0.51"
+  },
+  "dependencies": {
+    "jenkins-js-modules": "1.5.4",
+    "jquery-detached-2.1.4": "^2.1.4-v2",
+    "jqueryui-detached-1.11": "^1.11.4-v9",
+    "window-handle": "1.0.1"
+  }
+}

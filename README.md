@@ -1,63 +1,25 @@
-[Ace Editor] module bundle (see [jenkins-js-modules]).
+# JavaScript Framework Library "bundle" plugins
 
-# HPI Dependency
-Your plugin needs to add a dependency on this plugin (to ensure it gets installed in Jenkins). 
+This repository contains Jenkins HPI plugins that "externalize" common/shared JavaScript libraries
+that can't be externalized via the [easy/recommended externalization process].
 
-```xml
-<artifactItem>
-    <groupId>org.jenkins-ci.ui</groupId>
-    <artifactId>ace-editor</artifactId>
-    <version>[VERSION]</version>
-</artifactItem>
-```
+> __Note__: The [easy/recommended externalization process] was created after this repository was created.
+> Before the new/easy process was created, all JavaScript libraries needed to be externalized via HPI plugins, which was a bit painful.
+> This is the reason why you still see HPI plugins sub-modules here for some libraries that can now work via the
+> [easy/recommended externalization process]. In each of these cases, the top level README.md files will indicate
+> that the [easy/recommended externalization process] can now be used.
 
-> See _[wiki.jenkins-ci.org](https://wiki.jenkins-ci.org/display/JENKINS/ACE+Editor+Plugin)_ to get the latest version.
+# Available Libs
+See the README.md files for the different bundle plugins (sub-modules of this repo) for details on how to use them
+e.g. 
 
-# Using Ace Editor v1.2.2:
+* [Ace Editor](https://github.com/jenkinsci/js-libs/tree/master/ace-editor)  
+* [Handlebars.js](https://github.com/jenkinsci/js-libs/tree/master/handlebars)
+  
+Other sub-modules in this repo (`momentjs` etc) contain plugin definitions for common/shared JavaScript libraries
+that __can__ be externalized via the [easy/recommended externalization process].
 
-* __Bundle Id__: `ace-editor:ace-editor-122`
+> Also see __[sample plugins](https://github.com/jenkinsci/js-samples)__. 
 
-Because of how the [Ace Editor] is implemented, it's not possible to use it via the preferred [CommonJS]
-synchronous `require`. It's only possible to use it in Jenkins by using the asynchronous `import`
-(via [jenkins-js-modules]).
-
-```javascript
-var jsModules = require('jenkins-js-modules');
-
-jsModules.import('ace-editor:ace-editor-122')
-    .onFulfilled(function (acePack) {
-        
-        // 'ace-editor:ace-editor-122' supplies an "ACEPack" object.
-        // ACEPack understands the hardwired async nature of the ACE impl and so
-        // provides some async ACE script loading functions.
-        
-        // Create an "editor" instance on the element having an
-        // id of 'acme-editor' ...
-        acePack.edit('acme-editor', function() {
-            var ace = acePack.ace;
-            var editor = this.editor;
-            
-            // Use the "addScript" function to add some Ace extensions.
-            // See the Ace docs for these.
-            acePack.addScript('ext-language_tools.js', function() {
-                // Configure the editor instance. See the Ace docs.
-                ace.require("ace/ext/language_tools");                
-                editor.$blockScrolling = Infinity;
-                editor.session.setMode("ace/mode/groovy");
-                editor.setTheme("ace/theme/tomorrow");
-                editor.setAutoScrollEditorIntoView(true);
-                editor.setOption("minLines", 20);
-                
-                // Etc ... hook editor events into your app's UI
-            });            
-        });
-    });
-```
-
-See the [Jenkins Workflow Editor code](https://github.com/jenkinsci/workflow-cps-plugin/blob/master/src/main/js/workflow-editor.js)
-as an example of how to use this library.
-
-[Ace Editor]: https://ace.c9.io
-[CommonJS]: http://www.commonjs.org/
-[jenkins-js-builder]: https://github.com/tfennelly/jenkins-js-builder
 [jenkins-js-modules]: https://github.com/tfennelly/jenkins-js-modules
+[easy/recommended externalization process]: https://github.com/jenkinsci/js-samples/blob/master/step-04-externalize-libs/HOW-IT-WORKS.md#configure-node-build-to-externalize-dependencies
