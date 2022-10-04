@@ -1,3 +1,45 @@
+# how to build it locally
+ 
+ Java version :: openjdk version "1.8.0_292"
+ Make sure to set JAVA_HOME as environmental variable and create/update the settings.xml file to have below code
+ 
+ <settings>
+  <pluginGroups>
+    <pluginGroup>org.jenkins-ci.tools</pluginGroup>
+  </pluginGroups>
+
+  <profiles>
+    <!-- Give access to Jenkins plugins -->
+    <profile>
+      <id>jenkins</id>
+      <activation>
+        <activeByDefault>true</activeByDefault> <!-- change this to false, if you don't like to have it on per default -->
+      </activation>
+      <repositories>
+        <repository>
+          <id>repo.jenkins-ci.org</id>
+          <url>https://repo.jenkins-ci.org/public/</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>repo.jenkins-ci.org</id>
+          <url>https://repo.jenkins-ci.org/public/</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+  <mirrors>
+    <mirror>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+      <mirrorOf>m.g.o-public</mirrorOf>
+    </mirror>
+  </mirrors>
+</settings>
+
+
+
 # JavaScript Framework Library "bundle" plugins
 
 This repository contains Jenkins HPI plugins that "externalize" common/shared JavaScript libraries
